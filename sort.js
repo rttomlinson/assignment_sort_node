@@ -93,10 +93,10 @@ function mergeSortR(arr) {
 }
 //console.log(mergeSort([4, 1, 2, 8, 9, 6, 3, 5, 4]));
 
-function benchmark(fn, count, ...args) {
+function benchmark(fn, count, arr) {
   let startTime = Date.now();
   for (let i = 0; i < count; i++) {
-    fn(...args);
+    fn(arr);
   }
   let endTime = Date.now();
   console.log(
@@ -127,9 +127,14 @@ let benchArr = (length) => {
 
 
 function quickSort(arr, lo, pivotIndex) {
+    //if array is 1 or 0, return the array
     if (arr.length <= 1) {
         return arr;
     }
+    //otherwise we need to sort the array
+    //do so by picking a pivot index
+    //then 
+    
     let partitionIndex = partition
     
 }
