@@ -120,44 +120,52 @@ let benchArr = (length) => {
 
 //console.log("absurd arrays")
 // let benchArray = benchArr(1000000)
-// benchmark(mergeSort, 1, benchArray);
-// benchmark(insertionSort, 1, benchArray);
-// benchmark(bubbleSort, 1, benchArray);
-// benchmark(mergeSortR, 1000, benchArray)
+// benchmark(mergeSort, 1, benchArray.slice(0));
+// benchmark(insertionSort, 1, benchArray.slice(0));
+// benchmark(bubbleSort, 1, benchArray.slice(0));
+// benchmark(mergeSortR, 1000, benchArray.slice(0));
 
 
-function quickSort(arr, lo, pivotIndex) {
+function quickSort(arr) {
+    let pivotIndex = arr.length - 1;
+    let lo = 0;
     //if array is 1 or 0, return the array
     if (arr.length <= 1) {
         return arr;
     }
-    //otherwise we need to sort the array
-    //do so by picking a pivot index
-    //then 
     
-    let partitionIndex = partition
+    while(lo < pivotIndex) {
+        if (arr[lo] >= arr[pivotIndex]) {
+        let temp = arr[lo];
+        arr[lo] = arr[pivotIndex - 1];
+        arr[pivotIndex - 1] = arr[pivotIndex];
+        arr[pivotIndex] = temp;
+        --pivotIndex;
+        }
+        if (arr[lo] < arr[pivotIndex]) {
+            lo++;
+        }
+    }
+    return [...quickSort(arr.slice(0, pivotIndex)), arr[pivotIndex], ...quickSort(arr.slice(pivotIndex + 1))];
     
 }
 
+console.log(quickSort([4, 8, 34, 1, 88, 32, 1, 2]));
 
+// algorithm quicksort(A, lo, hi) is
+//     if lo < hi then
+//         p := partition(A, lo, hi)
+//         quicksort(A, lo, p – 1)
+//         quicksort(A, p + 1, hi)
 
-[2, 5]
-
-
-algorithm quicksort(A, lo, hi) is
-    if lo < hi then
-        p := partition(A, lo, hi)
-        quicksort(A, lo, p – 1)
-        quicksort(A, p + 1, hi)
-
-algorithm partition(A, lo, hi) is
-    pivot := A[hi]
-    i := lo - 1    
-    for j := lo to hi - 1 do
-        if A[j] ≤ pivot then
-            i := i + 1
-            if i ≠ j then
-                swap A[i] with A[j]
-    swap A[i+1] with A[hi]
-    return i + 1
+// algorithm partition(A, lo, hi) is
+//     pivot := A[hi]
+//     i := lo - 1    
+//     for j := lo to hi - 1 do
+//         if A[j] ≤ pivot then
+//             i := i + 1
+//             if i ≠ j then
+//                 swap A[i] with A[j]
+//     swap A[i+1] with A[hi]
+//     return i + 1
 
