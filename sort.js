@@ -133,7 +133,7 @@ function quickSort(arr) {
     if (arr.length <= 1) {
         return arr;
     }
-    
+
     while(lo < pivotIndex) {
         if (arr[lo] >= arr[pivotIndex]) {
         let temp = arr[lo];
@@ -147,25 +147,63 @@ function quickSort(arr) {
         }
     }
     return [...quickSort(arr.slice(0, pivotIndex)), arr[pivotIndex], ...quickSort(arr.slice(pivotIndex + 1))];
-    
+
 }
 
 console.log(quickSort([4, 8, 34, 1, 88, 32, 1, 2]));
 
-// algorithm quicksort(A, lo, hi) is
-//     if lo < hi then
-//         p := partition(A, lo, hi)
-//         quicksort(A, lo, p – 1)
-//         quicksort(A, p + 1, hi)
 
-// algorithm partition(A, lo, hi) is
-//     pivot := A[hi]
-//     i := lo - 1    
-//     for j := lo to hi - 1 do
-//         if A[j] ≤ pivot then
-//             i := i + 1
-//             if i ≠ j then
-//                 swap A[i] with A[j]
-//     swap A[i+1] with A[hi]
-//     return i + 1
 
+class HeapNode {
+  constructor(data = null) {
+    this.data = data
+    this.left = null
+    this.right = null
+  }
+}
+
+class MinHeap {
+  constructor(arr){
+    this.root = this.buildHeap(arr)
+  }
+
+  buildHeap(arr) {
+    arr.forEach(val => {
+      val = new HeapNode(val)
+      this.insert(val)
+    })
+  }
+
+  insert(val, curNode = this.root) {
+    if(this.root.data === null) {
+      this.root = val
+      return
+    }
+    if(val.data < curNode.data) {
+      let newChild = curNode
+      curNode = val
+      curNode.left = newChild
+      return
+    }
+    if(val.data > curNode.data) {
+      if(curNode.right !== null) {
+        return this.insert(val, curNode.right)
+      } else {
+        curNode.right = val
+        return
+      }
+    }
+  }
+}
+
+
+[5, 13, 2]
+
+root: data:5 left:null right:null
+root: data:5 left:null right:{data:13 left:null right:null}
+root: data:2 left:{data:5 left:null right:{data:13 left:null right:null} right:null}
+
+           4
+      5
+  36     20
+       30
