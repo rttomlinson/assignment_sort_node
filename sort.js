@@ -169,27 +169,27 @@ class MinHeap {
 
   buildHeap(arr) {
     arr.forEach(val => {
-      val = new HeapNode(val)
-      this.insert(val)
+      node = new HeapNode(val)
+      this.insert(node)
     })
   }
 
-  insert(val, curNode = this.root) {
-    if(this.root.data === null) {
-      this.root = val
+  insert(node, curNode = this.root) {
+    if(this.root === null) {
+      this.root = node
       return
     }
-    if(val.data < curNode.data) {
+    if(node.data < curNode.data) {
       let newChild = curNode
-      curNode = val
+      curNode = node
       curNode.left = newChild
       return
     }
-    if(val.data > curNode.data) {
+    if(node.data > curNode.data) {
       if(curNode.right !== null) {
         return this.insert(val, curNode.right)
       } else {
-        curNode.right = val
+        curNode.right = node
         return
       }
     }
@@ -207,3 +207,10 @@ root: data:2 left:{data:5 left:null right:{data:13 left:null right:null} right:n
       5
   36     20
        30
+       
+      
+            10
+        33     42
+    35
+       
+
