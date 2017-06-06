@@ -112,15 +112,47 @@ let benchArr = (length) => {
   }
   return arr
 }
-console.log("short arrays")
-benchmark(mergeSort, 1000, [4, 1, 2, 8, 9, 6, 3, 5, 4]);
-benchmark(insertionSort, 1000, [4, 1, 2, 8, 9, 6, 3, 5, 4]);
-benchmark(bubbleSort, 1000, [4, 1, 2, 8, 9, 6, 3, 5, 4]);
-benchmark(mergeSortR, 1000, [4, 1, 2, 8, 9, 6, 3, 5, 4])
+// console.log("short arrays")
+// benchmark(mergeSort, 1000, [4, 1, 2, 8, 9, 6, 3, 5, 4]);
+// benchmark(insertionSort, 1000, [4, 1, 2, 8, 9, 6, 3, 5, 4]);
+// benchmark(bubbleSort, 1000, [4, 1, 2, 8, 9, 6, 3, 5, 4]);
+// benchmark(mergeSortR, 1000, [4, 1, 2, 8, 9, 6, 3, 5, 4])
 
-console.log("absurd arrays")
-let benchArray = benchArr(1000000)
-benchmark(mergeSort, 1, benchArray);
-benchmark(insertionSort, 1, benchArray);
-benchmark(bubbleSort, 1, benchArray);
+//console.log("absurd arrays")
+// let benchArray = benchArr(1000000)
+// benchmark(mergeSort, 1, benchArray);
+// benchmark(insertionSort, 1, benchArray);
+// benchmark(bubbleSort, 1, benchArray);
 // benchmark(mergeSortR, 1000, benchArray)
+
+
+function quickSort(arr, lo, pivotIndex) {
+    if (arr.length <= 1) {
+        return arr;
+    }
+    let partitionIndex = partition
+    
+}
+
+
+
+[2, 5]
+
+
+algorithm quicksort(A, lo, hi) is
+    if lo < hi then
+        p := partition(A, lo, hi)
+        quicksort(A, lo, p – 1)
+        quicksort(A, p + 1, hi)
+
+algorithm partition(A, lo, hi) is
+    pivot := A[hi]
+    i := lo - 1    
+    for j := lo to hi - 1 do
+        if A[j] ≤ pivot then
+            i := i + 1
+            if i ≠ j then
+                swap A[i] with A[j]
+    swap A[i+1] with A[hi]
+    return i + 1
+
